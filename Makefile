@@ -19,14 +19,13 @@ endif
 ifneq (,$(shell if docker version &> /dev/null; then echo -; fi))
 
 DPKG := github.com/codedellemc/libstorage
-DIMG := golang:1.7.1
+DIMG := libstoragebuild
 DGOHOSTOS := $(shell uname -s | tr A-Z a-z)
 ifeq (undefined,$(origin DGOOS))
 DGOOS := $(DGOHOSTOS)
 endif
 DGOARCH := amd64
-DPRFX := build-libstorage
-DNAME := $(DPRFX)
+DNAME := build-libstorage
 ifeq (1,$(DBUILD_ONCE))
 DNAME := $(DNAME)-$(shell date +%s)
 endif
@@ -49,7 +48,7 @@ ifeq (darwin,$(DGOHOSTOS))
 DTARC := -
 endif
 DIMG_EXISTS := docker images --format '{{.Repository}}:{{.Tag}}' | grep $(DIMG) &> /dev/null
-DTO_CLOBBER := docker ps -a --format '{{.Names}}' | grep $(DPRFX)
+DTO_CLOBBER := docker ps -a --format '{{.Names}}' | grep $(DNAME)
 DNETRC := $(HOME)/.netrc
 
 # DLOCAL_IMPORTS specifics a list of imported packages to copy into the
@@ -67,7 +66,7 @@ endif
 endif
 
 docker-init:
-	@if ! $(DIMG_EXISTS); then docker pull $(DIMG); fi
+	@if ! $(DIMG_EXISTS); then docker build -t $(DIMG) .; fi
 	@docker run --name $(DNAME) -d $(DIMG) /sbin/init -D &> /dev/null || true && \
 		docker exec $(DNAME) mkdir -p $(DPATH) && \
 		tar -c $(DTARC) .git $(DSRCS) | docker cp - $(DNAME):$(DPATH)
