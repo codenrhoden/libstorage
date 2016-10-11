@@ -48,6 +48,10 @@ import:
     ref:     42196eaf5b93739d335921404bb7c5f2205fceb3
     repo:    https://github.com/clintonskitson/gophercloud.git
 
+### XtremIO
+  - package: github.com/emccode/goxtremio
+    ref:     master
+
 ################################################################################
 ##                             Build System Tools                             ##
 ################################################################################

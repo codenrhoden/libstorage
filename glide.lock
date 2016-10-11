@@ -1,5 +1,5 @@
-hash: 9bf64d1ef1d1dc736991d9e54e5e77dbfdfd5dcb44ce79433c82232c20bf7e87
-updated: 2016-09-28T14:15:52.550869408-05:00
+hash: 4b34082c3a13270b5e8a75eb877796c5c70e6fac98956e3c775afd189dd62ce4
+updated: 2016-10-10T12:23:39.853218891-07:00
 imports:
 - name: github.com/akutz/gofig
   version: 697c16916338166671910eeaccc50f21e3c10726
@@ -22,30 +22,30 @@ imports:
   repo: https://github.com/aws/aws-sdk-go
   subpackages:
   - aws
-  - aws/credentials
-  - aws/credentials/ec2rolecreds
-  - aws/ec2metadata
-  - aws/session
-  - service/ec2
   - aws/awserr
-  - service/efs
+  - aws/awsutil
   - aws/client
   - aws/client/metadata
-  - aws/request
   - aws/corehandlers
+  - aws/credentials
+  - aws/credentials/ec2rolecreds
   - aws/defaults
-  - private/endpoints
-  - aws/awsutil
+  - aws/ec2metadata
+  - aws/request
+  - aws/session
   - aws/signer/v4
+  - private/endpoints
   - private/protocol
   - private/protocol/ec2query
-  - private/waiter
-  - private/protocol/restjson
-  - private/protocol/rest
-  - private/protocol/query/queryutil
-  - private/protocol/xml/xmlutil
-  - private/protocol/jsonrpc
   - private/protocol/json/jsonutil
+  - private/protocol/jsonrpc
+  - private/protocol/query/queryutil
+  - private/protocol/rest
+  - private/protocol/restjson
+  - private/protocol/xml/xmlutil
+  - private/waiter
+  - service/ec2
+  - service/efs
 - name: github.com/BurntSushi/toml
   version: 99064174e013895bbd9b025c31100bd1d9b590ca
 - name: github.com/cesanta/ucl
@@ -55,26 +55,30 @@ imports:
   subpackages:
   - schema
 - name: github.com/davecgh/go-spew
-  version: 6d212800a42e8ab5c146b8ace3490ee17e5225f9
+  version: 5215b55f46b2b919f50a1df0eaa5886afe4e3b3d
   subpackages:
   - spew
 - name: github.com/emccode/goisilon
   version: 653c13de5e1e0294ca0c7eead83e396fe308b497
   subpackages:
   - api
+  - api/json
   - api/v1
   - api/v2
-  - api/json
 - name: github.com/emccode/goscaleio
   version: c44530c3896b770bb2a93f46f50e1b7ac7a01e57
   repo: https://github.com/emccode/goscaleio
   subpackages:
-  - types/v1
   - tls
+  - types/v1
 - name: github.com/emccode/gournal
   version: 3bd901de15097583a5b1f4b377421cfc647c3664
   subpackages:
   - logrus
+- name: github.com/emccode/goxtremio
+  version: dd0daf33ea134fab43298ec8962a544c00a5d16e
+  subpackages:
+  - api/v3
 - name: github.com/go-ini/ini
   version: 6e4869b434bd001f6983749881c7ead3545887d8
 - name: github.com/go-yaml/yaml
@@ -83,7 +87,7 @@ imports:
 - name: github.com/gorilla/context
   version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
 - name: github.com/gorilla/mux
-  version: 757bef944d0f21880861c2dd9c871ca543023cba
+  version: 0a192a193177452756c362c20087ddafcf6829c4
 - name: github.com/jmespath/go-jmespath
   version: bd40a432e4c76585ef6b72d3fd96fb9b6dc7b68d
 - name: github.com/jteeuwen/go-bindata
@@ -113,18 +117,18 @@ imports:
   - openstack/blockstorage/v1/snapshots
   - openstack/blockstorage/v1/volumes
   - openstack/compute/v2/extensions/volumeattach
+  - openstack/identity/v2/tenants
   - openstack/identity/v2/tokens
   - openstack/identity/v3/tokens
   - openstack/utils
   - pagination
   - testhelper
   - testhelper/client
-  - openstack/identity/v2/tenants
 - name: github.com/Sirupsen/logrus
   version: 5f376aa629ac60c3215cc368e674bd996093a01a
   repo: https://github.com/akutz/logrus
 - name: github.com/spf13/cast
-  version: 2580bc98dc0e62908119e4737030cc2fdfc45e4c
+  version: e31f36ffc91a2ba9ddb72a4b6a607ff9b3d3cb63
 - name: github.com/spf13/jwalterweatherman
   version: 33c24e77fb80341fe7130ee7c594256ff08ccc46
 - name: github.com/spf13/pflag
@@ -134,16 +138,16 @@ imports:
   version: 317ec73d0d7507658ee3be15866b445d6d921848
   repo: https://github.com/akutz/viper.git
 - name: github.com/stretchr/testify
-  version: 976c720a22c8eb4eb6a0b4348ad85ad12491a506
+  version: d77da356e56a7428ad25149ca77381849a6a5232
   subpackages:
   - assert
 - name: golang.org/x/net
-  version: f09c4662a0bd6bd8943ac7b4931e185df9471da4
+  version: 749a502dd1eaf3e5bfd4f8956748c502357c0bbe
   subpackages:
   - context
   - context/ctxhttp
 - name: golang.org/x/sys
-  version: 8f0908ab3b2457e2e15403d3697c9ef5cb4b57a9
+  version: 30de6d19a3bd89a5f38ae4028e23aaa5582648af
   subpackages:
   - unix
 - name: gopkg.in/fsnotify.v1
