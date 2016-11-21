@@ -125,7 +125,7 @@ func GetInstanceID() (*types.InstanceID, error) {
 	for _, intf := range localIntfs {
 		localIP, localNet, _ := net.ParseCIDR(intf.String())
 		for _, monIP := range monIPs {
-			if localNet.Contains(*monIP) {
+			if localNet.Contains(monIP) {
 				// Monitor reachable over L2
 				iid.ID = localIP.String()
 				return iid, nil
@@ -143,19 +143,25 @@ func GetInstanceID() (*types.InstanceID, error) {
 	return iid, nil
 }
 
-func getCephMonIPs() ([]*net.IP, error) {
+func getCephMonIPs() ([]net.IP, error) {
 	out, err := exec.Command("ceph-conf", "--lookup", "mon_host").Output()
 	if err != nil {
 		return nil, goof.WithError("Unable to get Ceph monitors", err)
 	}
 
-	ipStrings := strings.Split(string(out), ",")
-	monIps := make([]*net.IP, 0, 4)
+	monStrings := strings.Split(strings.TrimSpace(string(out)), ",")
 
-	for _, ipS := range ipStrings {
-		ip := net.ParseIP(ipS)
+	monIps := make([]net.IP, 0, 4)
+
+	for _, mon := range monStrings {
+		ip := net.ParseIP(mon)
 		if ip != nil {
-			monIps = append(monIps, &ip)
+			monIps = append(monIps, ip)
+		} else {
+			ipSlice, err := net.LookupIP(mon)
+			if err == nil {
+				monIps = append(monIps, ipSlice...)
+			}
 		}
 	}
 
